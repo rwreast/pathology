@@ -3,7 +3,6 @@ import os
 import numpy as np
 import torch
 import torch.optim
-import torch.nn as nn
 import torch.utils.data
 from tensorboardX import SummaryWriter
 from dataset import (
@@ -11,13 +10,6 @@ from dataset import (
     TumorRegion_PathologyType_Feat,
 )
 import datetime
-import utliz
-from tqdm import tqdm
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import cohen_kappa_score
-from sklearn.metrics import roc_curve
-from sklearn.metrics import confusion_matrix
-from sklearn.preprocessing import label_binarize
 import task_pathocls_prediction  # 五分类
 
 
@@ -66,7 +58,9 @@ def datasetprogress(args):
     # 定义缓存目录和文件名
     cache_dir = "cache"
     os.makedirs(cache_dir, exist_ok=True)
-    cache_filename = os.path.join(cache_dir, f"5CLS_dataset_cache_downsample_{args.downsample}.pth")
+    cache_filename = os.path.join(
+        cache_dir, f"5CLS_dataset_cache_downsample_{args.downsample}.pth"
+    )
 
     # 检查缓存文件是否存在
     if os.path.exists(cache_filename):
@@ -76,7 +70,9 @@ def datasetprogress(args):
     else:
         print(f"--- Cache file not found. Loading dataset from source... ---")
         InternalTrain, InternalTest, ExternalTest, huadong = (
-            get_train_test_ds_MultiCenter_region_trainwithTCGA(downsample=args.downsample)
+            get_train_test_ds_MultiCenter_region_trainwithTCGA(
+                downsample=args.downsample
+            )
         )
         print(f"--- Saving dataset to cache file: {cache_filename} ---")
         # 使用 torch.save 保存数据

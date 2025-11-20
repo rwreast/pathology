@@ -1,23 +1,8 @@
 import argparse
-import os
-import numpy as np
 import torch
 import torch.optim
-import torch.nn as nn
-import torch.utils.data
 from tensorboardX import SummaryWriter
-from dataset import (
-    get_train_test_ds_MultiCenter_region_trainwithTCGA,
-    TumorRegion_PathologyType_Feat,
-)
 import datetime
-import utliz
-from tqdm import tqdm
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import cohen_kappa_score
-from sklearn.metrics import roc_curve
-from sklearn.metrics import confusion_matrix
-from sklearn.preprocessing import label_binarize
 import task_pathocls_prediction  # 五分类
 import my_5cls_dataset  # 五分类数据处理带过滤
 
